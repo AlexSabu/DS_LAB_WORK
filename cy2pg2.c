@@ -2,8 +2,6 @@
 #include<stdio.h>
 #include<stdlib.h>
 
-void finalize();
-
 struct Poly{
     int expon;
     int coef;
