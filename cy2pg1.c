@@ -36,6 +36,7 @@ struct List* insertBeg(struct List* header,int data){
     return header;
 }
 
+//inserting at the end
 struct List* insertEnd(struct List *header,int data){
     struct List *new=(struct List*)malloc(sizeof(struct List));
     new->data=data;
@@ -53,6 +54,7 @@ struct List* insertEnd(struct List *header,int data){
     return header;
 }
 
+//inserting at a particular position
 struct List* insertLoc(struct List* header, int data){
     int pos,n=0;
     printf("input position:");scanf("%d",&pos);
