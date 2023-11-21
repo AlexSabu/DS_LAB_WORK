@@ -9,7 +9,7 @@ struct Poly{
 };
 struct Poly *poly1=NULL,*poly2=NULL,*poly3=NULL,*poly4=NULL;
 int n1,n2;
-
+//creating new terms
 struct Poly* create(struct Poly *poly,int n){
     int expon;
     float coef;
