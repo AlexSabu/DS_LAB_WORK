@@ -5,7 +5,7 @@
 char string[100][100];//stores all strings from file
 int count=0;//stores total count of strings in file
 
-void sort(){
+void sort(){//sort function
     char temp[100];
     for(int i=0;i<count;i++){
         for(int j=0;j<count-i-1;j++){
