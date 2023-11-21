@@ -30,7 +30,7 @@ struct Poly* create(struct Poly *poly,int n){
     }
     return poly;
 }
-
+//displaying the polynomial
 void display(struct Poly *poly){
     struct Poly *current=poly;
     if(poly==NULL){
