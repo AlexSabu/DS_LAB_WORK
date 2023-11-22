@@ -48,7 +48,7 @@ void display(struct Poly *poly){
     }
     printf("\n");
 }
-
+//comparing exponents of terms
 int compare(int e1,int e2){
     if(e1>e2) return 1;
     else if(e1<e2) return -1;
