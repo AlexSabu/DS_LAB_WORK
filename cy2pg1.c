@@ -80,7 +80,7 @@ struct List* insertLoc(struct List* header, int data){
     }
     return header;
 }
-
+//deleting node from beginning
 struct List* deleteBeg(struct List* header){
     struct List* node;
     if(header==NULL){
