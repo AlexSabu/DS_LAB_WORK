@@ -94,7 +94,7 @@ struct List* deleteBeg(struct List* header){
     }
     return header;
 }
-
+//deleting element
 struct List* deleteEnd(struct List* header){
     struct List* current=header, *temp;
     if(header==NULL){
