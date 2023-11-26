@@ -109,7 +109,7 @@ struct List* deleteEnd(struct List* header){
     free(current);
     return header;
 }
-//deleting element at a particular
+//deleting element at a particular location
 struct List* deleteLoc(struct List* header){
     int pos,n=0;
     printf("enter pos:");scanf("%d",&pos);
