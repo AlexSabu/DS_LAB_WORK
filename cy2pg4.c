@@ -18,7 +18,7 @@ void enqueue(int elt){
     new->link=queue;
     queue=new;
 }
-//dequeue
+//dequeue operation
 void dequeue(){
     struct Queue *current=queue,*temp=NULL;
     if(queue==NULL){
