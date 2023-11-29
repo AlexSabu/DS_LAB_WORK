@@ -7,7 +7,7 @@ struct Queue{
     struct Queue *link;
 };
 struct Queue *queue=NULL;
-//enqueue
+//enqueue operation
 void enqueue(int elt){
     struct Queue *new=(struct Queue *)malloc(sizeof(struct Queue));
     if(new==NULL){
