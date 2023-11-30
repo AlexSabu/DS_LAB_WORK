@@ -18,7 +18,7 @@ void push1(char ch,int *top){
 char pop1(int *top){
     return stack1[(*top)--];
 }
-
+//converts infix to postfix
 void inToPost(char infix[]){
     int j=0;
     char symbol,temp;
