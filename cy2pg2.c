@@ -2,7 +2,7 @@
 #include<stdio.h>
 #include<stdlib.h>
 
-struct Poly{//self-referential structure
+struct Poly{
     int expon;
     int coef;
     struct Poly *link;
