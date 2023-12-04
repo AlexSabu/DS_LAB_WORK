@@ -2,6 +2,7 @@
 #include<stdio.h>
 #include<stdlib.h>
 
+//self
 struct Poly{
     int expon;
     int coef;
