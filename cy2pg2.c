@@ -55,7 +55,7 @@ int compare(int e1,int e2){
     else if(e1<e2) return -1;
     else return 0;
 }
-//used to attach new
+//used to attach new nodes
 void attach(int coef,int expon){
     struct Poly *current=poly3;
     struct Poly *new=(struct Poly*)malloc(sizeof(struct Poly));
