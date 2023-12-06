@@ -70,7 +70,7 @@ void attach(int coef,int expon){
     current->link=new;
     return;
 }
-//taking sum
+//taking sum of
 void sum(){
     struct Poly *current1=poly1,*current2=poly2;
     while(current1!=NULL && current2!=NULL){
