@@ -2,6 +2,7 @@
 #include<stdio.h>
 #include<stdlib.h>
 
+//structure for binary tree
 struct BST{
     int data;
     struct BST *left;
