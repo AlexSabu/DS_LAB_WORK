@@ -80,52 +80,39 @@ void insertNode(int key,int data){
     }
 }
 
-struct binaryTree* delSearch(struct binaryTree* node,int key){
-
-}
 struct binaryTree* searchParent(struct binaryTree *node,int key,struct binaryTree *prev){
-    struct binaryTree *parent=NULL;
+    //struct binaryTree *parent=NULL;
     if(node==NULL) return NULL;
-    if(node->data==key){
-        parent=prev;
+    if (node->data == key) {
         return prev;
     }
-    else{
-        searchParent(node->left,key,node);
-        searchParent(node->right,key,node);
+    struct binaryTree *leftResult = searchParent(node->left, key, node);
+    if (leftResult != NULL) {
+        return leftResult;
     }
-    return parent;
+    return searchParent(node->right, key, node);
 }
-void deleteNode(int key){
-    struct binaryTree *parent=NULL,*prev=NULL;
-    if(root==NULL){
-        printf("tree empty");exit(0);
+void deleteNode(int key) {
+    if (root == NULL) {
+        printf("Tree empty\n");
+        return;
     }
-    parent=searchParent(root,key,prev);
-    if(parent!=NULL){
-        if(parent->left!=NULL){
-            if(parent->left->data==key){
-                if(parent->left->left==NULL && parent->left->right==NULL){
-                    parent->left=NULL;
-                }
-                else{
-                    printf("node is not a leaf node. no deletion");
-                }
-            }
+
+    struct binaryTree *parent = NULL;
+    parent = searchParent(root, key, NULL);
+
+    if (parent != NULL) {
+        if (parent->left != NULL && parent->left->data == key) {
+            free(parent->left);
+            parent->left = NULL;
+        } else if (parent->right != NULL && parent->right->data == key) {
+            free(parent->right);
+            parent->right = NULL;
+        } else {
+            printf("Node is not a leaf node. No deletion\n");
         }
-        if(parent->right!=NULL){
-            if(parent->right->data==key){
-                if(parent->right->left==NULL && parent->right->right==NULL){
-                    parent->right=NULL;
-                }
-                else{
-                    printf("node is not a leaf node. no deletion");
-                }                
-            }
-        }
-    }
-    else{
-        printf("node absent. hence no deletion");
+    } else {
+        printf("Node absent. No deletion\n");
     }
 }
 void main(){
