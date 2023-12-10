@@ -64,7 +64,6 @@ void printAdjList(struct Graph* graph){
     
 }
 
-//print adjacency matrix
 void printAdjMatrix(struct Graph *graph){
     for(int i=1;i<=graph->vertices;i++){
         for(int j=1;j<=graph->vertices;j++){
