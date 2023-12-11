@@ -37,7 +37,7 @@ struct Graph* createGraph(int vertices){
     return graph;
 }
 
-//adding an edge to an 
+//adding an edge to an undirected graph
 void addEdge(struct Graph *graph,int src,int dest){
     //edge from src to dest
     struct Node *new=createNode(dest);
