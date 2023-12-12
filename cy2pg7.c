@@ -82,7 +82,6 @@ void printAdjMatrix(struct Graph *graph){
         printf("\n");
     }
 }
-
 //depth first search
 void DFS(struct Graph *graph,int firstVertex){
     //visited array
