@@ -105,7 +105,8 @@ void DFS_rec(struct Graph *graph,int vertex,int visited[]){
         current=current->link;
     }
 }
-//breadth first search
+
+
 void BFS(struct Graph *graph,int firstVertex){
     //visited array
     int* visited=(int *)malloc((graph->vertices+1)*(sizeof(int)));
