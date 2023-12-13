@@ -32,6 +32,7 @@ void inOrder(struct binaryTree *root){
         inOrder(root->right);
     }
 }
+//postorder traversal
 void postOrder(struct binaryTree *root){
     if(root){
         postOrder(root->left);
