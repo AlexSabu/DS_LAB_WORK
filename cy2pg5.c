@@ -16,7 +16,7 @@ struct binaryTree* createNode(int data){
     new->left=new->right=NULL;
     return new;
 }
-
+//preorder traversal
 void preOrder(struct binaryTree *root){
     if(root){
         printf("%d ",root->data);
@@ -24,6 +24,7 @@ void preOrder(struct binaryTree *root){
         preOrder(root->right);
     }
 }
+//inorder traversal
 void inOrder(struct binaryTree *root){
     if(root){
         inOrder(root->left);
