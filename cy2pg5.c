@@ -9,6 +9,7 @@ struct binaryTree{
 };
 struct binaryTree *root=NULL;
 
+//creating new nodes
 struct binaryTree* createNode(int data){
     struct binaryTree *new=(struct binaryTree*)malloc(sizeof(struct binaryTree));
     new->data=data;
