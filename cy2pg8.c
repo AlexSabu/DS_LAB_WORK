@@ -2,6 +2,7 @@
 #include <stdlib.h>
 
 void heapify(int[],int,int);
+int partition(int[],int,int);
 
 void insertionSort(int arr[], int n) {
   int i,j,key;
@@ -68,13 +69,31 @@ void mergeSort(int arr[], int l, int r) {
 }
 
 int partition(int arr[], int low, int high) {
-    // Quick Sort helper function for partitioning the array
-    // ...
+    int i=low,j=high;
+    int pivot=arr[low],temp;
+    while(i<j){
+        while(i<=high && arr[i]<=pivot)
+            i++;
+        while(j>=low && arr[j]>pivot)
+            j--;
+        if(i<j){
+            temp=arr[i];
+            arr[i]=arr[j];
+            arr[j]=temp;
+        }
+    }
+    arr[low]=arr[j];
+    arr[j]=pivot;
+    return j;
 }
 
 void quickSort(int arr[], int low, int high) {
-    // Quick Sort algorithm implementation
-    // ...
+    int j;
+    if(low<high){
+        j=partition(arr,low,high);
+        quickSort(arr,low,j);
+        quickSort(arr,j+1,high);
+    }
 }
 
 void printArray(int arr[], int size) {
