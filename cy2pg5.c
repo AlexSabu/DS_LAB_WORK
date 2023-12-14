@@ -51,7 +51,7 @@ struct binaryTree* searchNode(struct binaryTree *node,int key){
     }
     return searchNode(node->right,key);
 }
-
+//insertion of
 void insertNode(int key,int data){
     struct binaryTree *node=root;
     node=searchNode(node,key);
