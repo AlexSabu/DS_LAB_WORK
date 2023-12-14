@@ -40,6 +40,7 @@ void postOrder(struct binaryTree *root){
         printf("%d ",root->data);
     }
 }
+//searching node for insertion
 struct binaryTree* searchNode(struct binaryTree *node,int key){
     if(node==NULL || node->data==key){
         return node;
