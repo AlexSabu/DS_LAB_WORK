@@ -5,6 +5,7 @@ void heapify(int[],int,int);
 int partition(int[],int,int);
 void merge(int[],int,int,int);
 
+//insertion sort
 void insertionSort(int arr[], int n) {
   int i,j,key;
     for(i=1;i<n;i++){
