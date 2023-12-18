@@ -169,19 +169,19 @@ int main() {
     scanf("%d", &choice);
 
     switch (choice) {
-        case 1:
+        case 1:printf("implementing Insertion sort\n");
             insertionSort(arr, n);
             break;
-        case 2:
+        case 2:printf("implementing Selection sort\n");
             selectionSort(arr, n);
             break;
-        case 3:
+        case 3:printf("implementing Heap sort\n");
             heapSort(arr, n);
             break;
-        case 4:
+        case 4:printf("implementing Merge sort\n");
             mergeSort(arr, 0, n - 1);
             break;
-        case 5:
+        case 5:printf("implementing Quick sort\n");
             quickSort(arr, 0, n - 1);
             break;
         default:
