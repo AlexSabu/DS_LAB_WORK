@@ -66,6 +66,7 @@ void printAdjList(struct Graph* graph){
 
 //print adjacency matrix
 void printAdjMatrix(struct Graph *graph){
+    printf("adjacency matrix: \n");
     for(int i=1;i<=graph->vertices;i++){
         for(int j=1;j<=graph->vertices;j++){
             int check=0;
@@ -141,6 +142,7 @@ void main(){
     struct Graph *graph=createGraph(vertices);
     printf("enter source & destination: \n");
     for(int i=0;i<edges;i++){
+        printf("edge-%d: ",i+1);
         int src,dest;
         scanf("%d %d",&src,&dest);
         addEdge(graph,src,dest);
