@@ -101,7 +101,7 @@ void main(){
                 memeoryStatus();
                 break;
             case 3: memeoryStatus();break;
-            default: printf("invalid choice\n");
+            default: printf("invalid choice\n");exit(0);
         }
     }
 }
