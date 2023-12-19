@@ -49,7 +49,7 @@ void display(){
         return;
     }
     while(current!=NULL){
-        printf("%d ",current->val);
+        printf("%d\t",current->val);
         current=current->link;
     }
 }
