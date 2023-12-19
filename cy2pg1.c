@@ -1,5 +1,4 @@
 //linked list
-
 #include<stdio.h>
 #include<stdlib.h>
 
@@ -147,7 +146,7 @@ void main(){
     while(1){
         printf("1.insert 2.delete 3.dispaly...");scanf("%d",&ch1);
     if(ch1==1){
-        printf("1.beginning 2.end 3.location");scanf("%d",&ch2);
+        printf("1.beginning 2.end 3.location: ");scanf("%d",&ch2);
         printf("enter data: ");scanf("%d",&data);
         if(ch2==1){
             header=insertBeg(header,data);
@@ -164,7 +163,7 @@ void main(){
         else exit(0);
     }
     else if(ch1==2){
-        printf("1.beginning 2.end 3.location");scanf("%d",&ch2);
+        printf("1.beginning 2.end 3.location: ");scanf("%d",&ch2);
         if(ch2==1){
             header=deleteBeg(header);
             display(header);
@@ -177,7 +176,8 @@ void main(){
             header=deleteLoc(header);
             display(header);
         }
-        else exit(0);
+        else {printf("exiting program");
+            exit(0);}
     }
     else if(ch1==3) display(header);
     else{
