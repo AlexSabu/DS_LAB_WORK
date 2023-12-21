@@ -19,6 +19,7 @@ struct Node* createNode(int data) {
     return newNode;
 }
 
+//creating hash table using chaining
 void insertChaining(struct Node* hashTable[], int key, int data) {
     int index = key % SIZE;
     struct Node* newNode = createNode(data);
