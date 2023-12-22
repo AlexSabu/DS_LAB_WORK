@@ -51,6 +51,7 @@ void displayChaining(struct Node* hashTable[]) {
     }
 }
 
+//linear probing method - inserting value
 void insertLinearProbing(int hashTable[], int key, int data) {
     int index = key % SIZE;
 
