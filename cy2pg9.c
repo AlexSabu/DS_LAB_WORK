@@ -62,6 +62,7 @@ void insertLinearProbing(int hashTable[], int key, int data) {
     hashTable[index] = data;
 }
 
+//linear probing- display 
 void displayLinearProbing(int hashTable[]) {
     printf("Hash Table (Linear Probing):\n");
     for (int i = 0; i < SIZE; i++) {
