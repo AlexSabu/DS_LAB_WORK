@@ -35,6 +35,7 @@ void insertChaining(struct Node* hashTable[], int key, int data) {
     }
 }
 
+//displaying chaining method of storing
 void displayChaining(struct Node* hashTable[]) {
     printf("Hash Table (Chaining):\n");
     for (int i = 0; i < SIZE; i++) {
