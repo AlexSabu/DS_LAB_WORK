@@ -34,6 +34,7 @@ void selectionSort(int arr[], int n) {
     }
 }
 
+//heap sort
 void heapSort(int arr[], int n) {
     for(int i=n/2-1;i>=0;i--){
         heapify(arr,i,n);
