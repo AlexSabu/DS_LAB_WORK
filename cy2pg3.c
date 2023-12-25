@@ -31,6 +31,8 @@ void push(int elt){
         current->link=new;
     }
 }
+
+//pop function
 void pop(){
     struct Stack *current=stk,*temp=NULL;
     if(stk==NULL){
