@@ -55,6 +55,8 @@ void pop(){
         free(current);
     }
 }
+
+//display function
 void display(){
     printf("\nstack: ");
     struct Stack *current=stk;
