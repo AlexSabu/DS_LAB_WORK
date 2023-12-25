@@ -104,6 +104,7 @@ void mergeSort(int arr[], int l, int r) {
     }
 }
 
+//quicksort
 int partition(int arr[], int low, int high) {
     int i=low,j=high;
     int pivot=arr[low],temp;
