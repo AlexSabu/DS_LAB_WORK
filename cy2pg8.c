@@ -46,6 +46,7 @@ void heapSort(int arr[], int n) {
         heapify(arr,0,i);
     }
 }
+//heapify algorithm
 void heapify(int arr[],int i,int n){
     int largest=i;
     int left=2*i+1;
