@@ -9,6 +9,7 @@ struct Stack{
 };
 struct Stack *stk=NULL;
 
+//push function
 void push(int elt){
     struct Stack *new=(struct Stack *)malloc(sizeof(struct Stack));
     if(new==NULL){
