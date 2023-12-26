@@ -41,6 +41,7 @@ void dequeue(){
     }
 }
 
+//displaying queue
 void display(){
     struct Queue *current=queue;
     printf("\nqueue: ");
