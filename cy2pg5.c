@@ -85,7 +85,6 @@ void insertNode(int key,int data){
 }
 
 struct binaryTree* searchParent(struct binaryTree *node,int key,struct binaryTree *prev){
-    //struct binaryTree *parent=NULL;
     if(node==NULL) return NULL;
     if (node->data == key) {
         return prev;
