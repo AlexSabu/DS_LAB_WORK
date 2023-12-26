@@ -95,6 +95,7 @@ struct binaryTree* searchParent(struct binaryTree *node,int key,struct binaryTre
     }
     return searchParent(node->right, key, node);
 }
+//deleting a node
 void deleteNode(int key) {
     if (root == NULL) {
         printf("Tree empty\n");
