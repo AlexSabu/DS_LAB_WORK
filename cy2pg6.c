@@ -94,6 +94,7 @@ struct BST* search(struct BST *node,int key){
     }
 }
 
+//traversal
 void inOrder(struct BST *node){
     if(node){
         inOrder(node->left);
