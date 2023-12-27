@@ -81,6 +81,7 @@ struct BST* findMin(struct BST *node){
     return node;
 }*/
 
+//search funtion
 struct BST* search(struct BST *node,int key){
     if(node==NULL || node->data==key){
         return node;
