@@ -108,7 +108,7 @@ void main(){
     root=createNode(data);
     while(1){
         int val,del,sr;
-        printf("1.insert 2.delete 3.search 4.display 5.exit: ");scanf("%d",&ch);
+        printf("1.insert 2.delete 3.search 4.display 5.exit: ");
         switch(ch){
             case 1:printf("enter data: ");scanf("%d",&val);
                 root=insertNode(root,val);
