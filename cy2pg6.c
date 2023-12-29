@@ -116,7 +116,7 @@ void main(){
                 inOrder(root);
                 printf("\n");break;;
                 break;
-            case 2:printf("data to be deleted: ");scanf("%d",&del);
+            case 2:printf("data to be deleted: ");
                 root=delete(root,del);
                 printf("binary search tree: ");
                 inOrder(root);
