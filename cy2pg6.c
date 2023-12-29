@@ -102,35 +102,5 @@ void inOrder(struct BST *node){
         inOrder(node->right);
     }
 }
-void main(){
-    int data,ch;
-    printf("enter root: ");scanf("%d",&data);
-    root=createNode(data);
-    while(1){
-        int val,del,sr;
-        printf("1.insert 2.delete 3.search 4.display 5.exit: ");scanf("%d",&ch);
-        switch(ch){
-            case 1:printf("enter data: ");scanf("%d",&val);
-                root=insertNode(root,val);
-                printf("binary search tree: ");
-                inOrder(root);
-                printf("\n");break;;
-                break;
-            case 2:printf("data to be deleted: ");
-                root=delete(root,del);
-                printf("binary search tree: ");
-                inOrder(root);
-                printf("\n");break;
-            case 3:printf("search key: ");scanf("%d",&sr);
-            struct BST *check=search(root,sr);
-            if(check==NULL) printf("element absent\n");
-            else printf("element present\n");
-            case 4:printf("inorder traversal: ");
-                inOrder(root);
-                printf("\n");
-                break;
-            default: exit(0);
-        }
-    }
-}
+
 
