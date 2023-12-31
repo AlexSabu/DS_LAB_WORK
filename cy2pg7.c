@@ -133,8 +133,8 @@ void BFS(struct Graph *graph,int firstVertex){
     }
     free(visited);
     free(queue);
-
 }
+
 void main(){
     int vertices,edges;
     printf("no. of vertices and edges: ");
