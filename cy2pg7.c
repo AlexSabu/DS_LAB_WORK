@@ -8,7 +8,21 @@ struct Node{
     struct Node *link;
 };
 
+//graph using adjList
+struct Graph{
+    int vertices;
+    struct Node **adjList;
+};
 
+void DFS_rec(struct Graph *graph,int vertex,int visited[]);
+
+//creating nodes of adjList
+struct Node* createNode(int data){
+    struct Node* new=(struct Node*)malloc(sizeof(struct Node));
+    new->data=data;
+    new->link=NULL;
+    return new;
+}
 
 //create a graph using no. of vertices
 struct Graph* createGraph(int vertices){
