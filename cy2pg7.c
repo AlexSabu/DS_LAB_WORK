@@ -24,18 +24,7 @@ struct Node* createNode(int data){
     return new;
 }
 
-//create a graph using no. of vertices
-struct Graph* createGraph(int vertices){
-    struct Graph* graph=(struct Graph*)malloc((sizeof(struct Graph)));
-    graph->vertices=vertices;
-    //array of adjLists
-    graph->adjList=(struct Node**)malloc(vertices*sizeof(struct Node*));
-    //initializing each adjList to null
-    for(int i=1;i<=vertices;i++){
-        graph->adjList[i]=NULL;
-    }
-    return graph;
-}
+
 
 //adding an edge to an undirected graph
 void addEdge(struct Graph *graph,int src,int dest){
