@@ -37,32 +37,7 @@ struct Graph* createGraph(int vertices){
     return graph;
 }
 
-//adding an edge to an undirected graph
-void addEdge(struct Graph *graph,int src,int dest){
-    //edge from src to dest
-    struct Node *new=createNode(dest);
-    new->link=graph->adjList[src];
-    graph->adjList[src]=new;
-    //edge from dest to src
-    new=createNode(src);
-    new->link=graph->adjList[dest];
-    graph->adjList[dest]=new;
-}
 
-//print adjacency list
-void printAdjList(struct Graph* graph){
-    printf("adjacency list: \n");
-    for(int i=1;i<=graph->vertices;i++){
-        printf("vertex-%d: ",i);
-        struct Node *current=graph->adjList[i];
-        while(current){
-            printf("%d ",current->data);
-            current=current->link;
-        }
-        printf("\n");
-    }
-    
-}
 
 //print adjacency matrix
 void printAdjMatrix(struct Graph *graph){
