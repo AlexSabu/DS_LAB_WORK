@@ -84,6 +84,28 @@ void printAdjMatrix(struct Graph *graph){
     }
 }
 
+//depth first search
+void DFS(struct Graph *graph,int firstVertex){
+    //visited array
+    int* visited=(int*)malloc((graph->vertices +1)*(sizeof(int)));
+    for(int i=1;i<=graph->vertices;i++){
+        visited[i]=0;
+    }
+    DFS_rec(graph,firstVertex,visited);
+    printf("\n");
+    free(visited);
+}
+void DFS_rec(struct Graph *graph,int vertex,int visited[]){
+    visited[vertex]=1;
+    printf("%d ",vertex);
+    struct Node *current=graph->adjList[vertex];
+    while(current){
+        if(visited[current->data]==0){
+            DFS_rec(graph,current->data,visited);
+        }
+        current=current->link;
+    }
+}
 
 //breadth first search
 void BFS(struct Graph *graph,int firstVertex){
