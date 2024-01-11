@@ -107,7 +107,34 @@ void DFS_rec(struct Graph *graph,int vertex,int visited[]){
     }
 }
 
+//breadth first search
+void BFS(struct Graph *graph,int firstVertex){
+    //visited array
+    int* visited=(int *)malloc((graph->vertices+1)*(sizeof(int)));
+    for(int i=1;i<=graph->vertices;i++){
+        visited[i]=0;
+    }
+    int* queue=(int *)malloc((graph->vertices+1)*(sizeof(int)));
+    int front=0,rear=-1;
 
+    visited[firstVertex]=1;
+    queue[++rear]=firstVertex;
+    while(front<=rear){
+        int currentVertex=queue[front++];
+        printf("%d ",currentVertex);
+        struct Node *temp=graph->adjList[currentVertex];
+        while(temp){
+            int ajdVertex=temp->data;
+            if(visited[ajdVertex]==0){
+                visited[ajdVertex]=1;
+                queue[++rear]=ajdVertex;
+            }
+            temp=temp->link;
+        }
+    }
+    free(visited);
+    free(queue);
+}
 
 void main(){
     int vertices,edges;
