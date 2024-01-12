@@ -136,24 +136,3 @@ void BFS(struct Graph *graph,int firstVertex){
     free(queue);
 }
 
-void main(){
-    int vertices,edges;
-    printf("no. of vertices and edges: ");
-    scanf("%d %d",&vertices,&edges);
-    struct Graph *graph=createGraph(vertices);
-    printf("enter source & destination: \n");
-    for(int i=0;i<edges;i++){
-        printf("edge-%d: ",i+1);
-        int src,dest;
-        scanf("%d %d",&src,&dest);
-        addEdge(graph,src,dest);
-    }
-    printAdjList(graph);
-    printAdjMatrix(graph);
-    int start;
-    printf("starting vertex: ");scanf("%d",&start);
-    printf("depth first search: \n");
-    DFS(graph,start);
-    printf("breadth first search: \n");
-    DFS(graph,start);
-}
