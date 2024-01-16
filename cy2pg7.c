@@ -64,25 +64,7 @@ void printAdjList(struct Graph* graph){
     
 }
 
-//print adjacency matrix
-void printAdjMatrix(struct Graph *graph){
-    printf("adjacency matrix: \n");
-    for(int i=1;i<=graph->vertices;i++){
-        for(int j=1;j<=graph->vertices;j++){
-            int check=0;
-            struct Node *current=graph->adjList[i];
-            while(current!=NULL){
-                if(current->data==j){
-                    check=1;
-                    break;
-                }
-                current=current->link;
-            }
-            printf("%d ",check);
-        }
-        printf("\n");
-    }
-}
+
 
 //depth first search
 void DFS(struct Graph *graph,int firstVertex){
