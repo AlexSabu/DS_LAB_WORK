@@ -95,30 +95,7 @@ struct binaryTree* searchParent(struct binaryTree *node,int key,struct binaryTre
     }
     return searchParent(node->right, key, node);
 }
-//deleting a node
-void deleteNode(int key) {
-    if (root == NULL) {
-        printf("Tree empty\n");
-        return;
-    }
 
-    struct binaryTree *parent = NULL;
-    parent = searchParent(root, key, NULL);
-
-    if (parent != NULL) {
-        if (parent->left != NULL && parent->left->data == key) {
-            free(parent->left);
-            parent->left = NULL;
-        } else if (parent->right != NULL && parent->right->data == key) {
-            free(parent->right);
-            parent->right = NULL;
-        } else {
-            printf("Node is not a leaf node. No deletion\n");
-        }
-    } else {
-        printf("Node absent. No deletion\n");
-    }
-}
 void main(){
     int data,ch,key,val,del;
     printf("enter root data: ");scanf("%d",&data);
