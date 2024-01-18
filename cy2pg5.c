@@ -84,17 +84,7 @@ void insertNode(int key,int data){
     }
 }
 
-struct binaryTree* searchParent(struct binaryTree *node,int key,struct binaryTree *prev){
-    if(node==NULL) return NULL;
-    if (node->data == key) {
-        return prev;
-    }
-    struct binaryTree *leftResult = searchParent(node->left, key, node);
-    if (leftResult != NULL) {
-        return leftResult;
-    }
-    return searchParent(node->right, key, node);
-}
+
 //deleting a node
 void deleteNode(int key) {
     if (root == NULL) {
