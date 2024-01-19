@@ -52,7 +52,37 @@ struct binaryTree* searchNode(struct binaryTree *node,int key){
     return searchNode(node->right,key);
 }
 //insertion of node
-
+void insertNode(int key,int data){
+    struct binaryTree *node=root;
+    node=searchNode(node,key);
+    if(node==NULL){
+        printf("no node found");exit(0);
+    }
+    if(node->left==NULL || node->right==NULL){
+        struct binaryTree *new=createNode(data);
+        int ch;
+        printf("1.left 2.right: ");scanf("%d",&ch);
+        if(ch==1){
+            if(node->left==NULL){
+                node->left=new;
+            }
+            else{
+                printf("left already occupied");exit(0);
+            }
+        }
+        if(ch==2){
+            if(node->right==NULL){
+                node->right=new;
+            }else{
+                printf("right already occupied");exit(0);
+            }
+        }
+    }
+    else{
+        printf("sub tree of node is already occupied");
+        exit(0);
+    }
+}
 
 struct binaryTree* searchParent(struct binaryTree *node,int key,struct binaryTree *prev){
     if(node==NULL) return NULL;
