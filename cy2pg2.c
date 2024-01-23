@@ -75,19 +75,19 @@ void sum(){
     struct Poly *current1=poly1,*current2=poly2;
     while(current1!=NULL && current2!=NULL){
         int a=compare(current1->expon,current2->expon);
-    if(a>0){
-        attach(current1->coef,current1->expon);
-        current1=current1->link;
-    }
-    else if(a<0){
-        attach(current2->coef,current2->expon);
-        current2=current2->link;
-    }
-    else{
-        attach(current1->coef+current2->coef,current1->expon);
-        current1=current1->link;
-        current2=current2->link;
-    }
+        if(a>0){
+            attach(current1->coef,current1->expon);
+            current1=current1->link;
+        }
+        else if(a<0){
+            attach(current2->coef,current2->expon);
+            current2=current2->link;
+        }
+        else{
+            attach(current1->coef+current2->coef,current1->expon);
+            current1=current1->link;
+            current2=current2->link;
+        }
     }
     while(current1!=NULL){
         attach(current1->coef,current1->expon);
