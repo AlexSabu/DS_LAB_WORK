@@ -61,7 +61,14 @@ void insertNode(struct BT *root,int key){
     }
 }
 
+void display(struct BT *root){//inorder traversal
 
+    if(root){
+        display(root->left);
+        printf("%d\t",root->data);
+        display(root->right);
+    }
+}
 
 int main(){
     int ch,key,rootdata;
