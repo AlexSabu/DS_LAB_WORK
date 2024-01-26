@@ -32,7 +32,24 @@ struct Poly* create(struct Poly *poly,int n){
     }
     return poly;
 }
-
+//displaying the polynomial
+void display(struct Poly *poly){
+    struct Poly *current=poly;
+    if(poly==NULL){
+        printf("empty\n");
+        return;
+    }
+    else{
+        while(current!=NULL){
+            printf("%dx^%d",current->coef,current->expon);
+            if(current->link!=NULL){
+                printf("+");
+            }
+            current=current->link;
+        }
+    }
+    printf("\n");
+}
 //comparing exponents of terms
 int compare(int e1,int e2){
     if(e1>e2) return 1;
