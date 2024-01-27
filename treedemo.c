@@ -122,23 +122,23 @@ void deleteNode(struct BT *root, int key){
                 if(left->left==NULL && left->right==NULL){
                     parent->left=NULL;
                     free(left);
+                    return;
                 }else{
                     printf("not a leaf node. cannot delete");
                     return;
                 }
             }
         }
-        else{
-            if(right){
-                if(right->data==key){
-                    if(right->left==NULL && right->right==NULL){
-                        parent->right=NULL;
-                        free(right);
-                    }
-                    else{
-                        printf("not a leaf node. cannot delete");
-                        return;                                        
-                    }
+        if(right){
+            if(right->data==key){
+                if(right->left==NULL && right->right==NULL){
+                    parent->right=NULL;
+                    free(right);
+                    return;
+                }
+                else{
+                    printf("not a leaf node. cannot delete");
+                    return;                                        
                 }
             }
         }
@@ -150,17 +150,9 @@ void deleteNode(struct BT *root, int key){
         printf("node does not exist");
         return;
     }
-    return;
 }
 
-void display(struct BT *root){//inorder traversal
 
-    if(root){
-        display(root->left);
-        printf("%d\t",root->data);
-        display(root->right);
-    }
-}
 
 void levelOrder(struct BT *root,struct Queue *queue){//level order using queue
     struct BT *temp=NULL;
@@ -178,12 +170,35 @@ void levelOrder(struct BT *root,struct Queue *queue){//level order using queue
     clearQueue(queue);
 }
 
+void Maximum_Minimum(struct BT *root,struct Queue *queue){//maximum elt+minimum etl
+    struct BT *temp=NULL;
+    int max,min;
+    if(!root){
+        printf("root is null");
+        return;
+    }
+    Enqueue(queue,root);
+    max=root->data;
+    min=root->data;
+    while(!isEmpty(queue)){
+        temp=Dequeue(queue);
+        if(max<=temp->data) 
+            max=temp->data;
+        if(min>=temp->data) 
+            min=temp->data;
+        if(temp->left) Enqueue(queue,temp->left);
+        if(temp->right) Enqueue(queue,temp->right);
+    }
+    clearQueue(queue);
+    printf("max: %d, min: %d",max,min);
+}
+
 int main(){
     int ch,key,rootdata;
     printf("enter root data:");scanf("%d",&rootdata);
     root=createNode(rootdata);
     while(1){
-        printf("\n1.insert 2.delete 3.display 4.level_order 8.exit: ");scanf("%d",&ch);
+        printf("\n1.insert 2.delete 3.display 4.level_order 5.max+min 8.exit: ");scanf("%d",&ch);
         if(ch==1){
             printf("input key: ");scanf("%d",&key);
             insertNode(root,key);
@@ -199,7 +214,10 @@ int main(){
         else if(ch==4){
             printf("current BT (using level-order): ");
             levelOrder(root,queue);
-        }               
+        }
+        else if(ch==5){
+            Maximum_Minimum(root,queue);
+        }                       
         else if(ch==8){
             printf("exiting...");
             return 0;
