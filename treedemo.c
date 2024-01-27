@@ -152,7 +152,14 @@ void deleteNode(struct BT *root, int key){
     }
 }
 
+void display(struct BT *root){//inorder traversal
 
+    if(root){
+        display(root->left);
+        printf("%d\t",root->data);
+        display(root->right);
+    }
+}
 
 void levelOrder(struct BT *root,struct Queue *queue){//level order using queue
     struct BT *temp=NULL;
