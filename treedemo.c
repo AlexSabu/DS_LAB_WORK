@@ -220,21 +220,65 @@ void Maximum_Minimum(struct BT *root,struct Queue *queue){//maximum elt+minimum 
             temp=Dequeue(queue);
             size++;
             if(temp->left){
-                Enqueue(queue,root->left);
+                Enqueue(queue,temp->left);
             }
             if(temp->right){
-                Enqueue(queue,root->right);
+                Enqueue(queue,temp->right);
             }
         }
+        clearQueue(queue);
         return size;
     }
 
+    //height of a tree
+    int heightRec(struct BT *root){
+        int left,right;
+        if(root==NULL){
+            return 0;
+        }
+        left=heightRec(root->left);
+        right=heightRec(root->right);
+        if(left>right){
+            return (left+1);
+        }
+        else{
+            return (right+1);
+        }
+    }
+
+    int heightWithoutRec(struct BT *root, struct Queue *queue){
+        struct BT *temp=NULL;
+        if(root==NULL){
+            return 0;
+        }
+        int level=0;
+        Enqueue(queue,NULL);
+        while(!isEmpty(queue)){
+            temp=Dequeue(queue);
+            if(temp==NULL){
+                if(!isEmpty(queue)){
+                    Enqueue(queue,NULL);
+                }
+                level++;
+            }
+            else{
+                if(temp->left){
+                    Enqueue(queue,temp->left);
+                }
+                if(temp->right){
+                    Enqueue(queue,temp->right);
+                }
+            }
+        }
+        return level;
+    }
+
 int main(){
-    int ch,key,rootdata;
+    int ch,ch2,key,rootdata;
     printf("enter root data:");scanf("%d",&rootdata);
     root=createNode(rootdata);
     while(1){
-        printf("\n1.insert 2.delete 3.display 4.level_order 5.max+min 6.sizeWithRec 7.sizeWithoutRec 8.exit: ");scanf("%d",&ch);
+        printf("\n1.insert 2.delete 3.display 4.level_order 5.max+min 6.sizeWithRec 7.sizeWithoutRec 8.height 9.exit: ");scanf("%d",&ch);
         if(ch==1){
             printf("input key: ");scanf("%d",&key);
             insertNode(root,key);
@@ -261,6 +305,11 @@ int main(){
             printf("size: %d",sizeWithoutRec(root,queue));
         } 
         else if(ch==8){
+            printf("rec or not: ");scanf("%d",&ch2);
+            if(ch2==1) printf("height: %d",heightRec(root));
+            else printf("height: %d",heightWithoutRec(root,queue));
+        }
+        else if(ch==9){
             printf("exiting...");
             return 0;
         }
