@@ -2,20 +2,21 @@
 #include<stdlib.h>
 #include<stdbool.h>
 
-struct BT {
+struct BT {//Bt node
     int data;
     struct BT *left;
     struct BT *right;
 };
 struct BT *root;
+struct BT *temp_root;//for identical function
 
-struct Queue{
+struct Queue{//queue
     struct BT *node;
 };
 struct Queue queue[50];
 int front=-1,rear=-1;
 
-void Enqueue(struct Queue *queue,struct BT *node){
+void Enqueue(struct Queue *queue,struct BT *node){//inserting node to cir-queue
     if(front==(rear+1)%50){
         printf("queue is full");
         exit(0);
@@ -25,7 +26,7 @@ void Enqueue(struct Queue *queue,struct BT *node){
     else rear++;
     queue[rear].node=node;
 }
-struct BT* Dequeue(struct Queue *queue){
+struct BT* Dequeue(struct Queue *queue){//deleting node from cir-queue
     if(front==-1){
         printf("queue is empty");
         exit(0);
@@ -36,11 +37,11 @@ struct BT* Dequeue(struct Queue *queue){
     else front++;
     return node;
 }
-bool isEmpty(struct Queue *queue){
+bool isEmpty(struct Queue *queue){//checking if cir-queue is empty
     if(front==-1) return true;
     return false;
 }
-void clearQueue(struct Queue *queue){
+void clearQueue(struct Queue *queue){//clearing queue
     int i=front;
     while(i!=rear){
         queue[i++].node=NULL;
@@ -50,14 +51,14 @@ void clearQueue(struct Queue *queue){
     front=rear=-1;
 }
 
-struct BT* createNode(int data){
+struct BT* createNode(int data){//creating node
     struct BT *new=(struct BT*)malloc(sizeof(struct BT));
     new->data=data;
     new->left=new->right=NULL;
     return new;
 }
 
-struct BT* searchParent(struct BT *root, int key){
+struct BT* searchParent(struct BT *root, int key){//dearch parent for insertion
     if(root==NULL || root->data==key){
         return root;
     }
@@ -66,7 +67,7 @@ struct BT* searchParent(struct BT *root, int key){
     return searchParent(root->right,key);
 }
 
-void insertNode(struct BT *root,int key){
+void insertNode(struct BT *root,int key){//inserting node
     struct BT *parent=NULL;
     parent=searchParent(root,key);
     if(parent!=NULL){
@@ -104,7 +105,7 @@ void insertNode(struct BT *root,int key){
     return;
 }
 
-struct BT* searchParent2(struct BT *root,int key,struct BT *parent){
+struct BT* searchParent2(struct BT *root,int key,struct BT *parent){//search parent for deletion
     if(root==NULL) return root;
     if(root->data==key) return parent;
     struct BT *left=searchParent2(root->left,key,root);
@@ -112,7 +113,7 @@ struct BT* searchParent2(struct BT *root,int key,struct BT *parent){
     return searchParent2(root->right,key,root);
 }
 
-void deleteNode(struct BT *root, int key){
+void deleteNode(struct BT *root, int key){//dealeting node
     struct BT *parent=NULL;
     parent=searchParent2(root,key,parent);
     if(parent){
@@ -200,7 +201,7 @@ void Maximum_Minimum(struct BT *root,struct Queue *queue){//maximum elt+minimum 
     printf("max: %d, min: %d",max,min);
     }
 
-    int sizeWithRec(struct BT *root){
+    int sizeWithRec(struct BT *root){//size of b-tree
         if(root==NULL){
             return 0;
         }
@@ -209,7 +210,7 @@ void Maximum_Minimum(struct BT *root,struct Queue *queue){//maximum elt+minimum 
         }
     }
 
-    int sizeWithoutRec(struct BT *root,struct Queue *queue){
+    int sizeWithoutRec(struct BT *root,struct Queue *queue){//size of b-tree
         struct BT *temp=NULL;
         int size=0;
         if(root==NULL){
@@ -246,7 +247,7 @@ void Maximum_Minimum(struct BT *root,struct Queue *queue){//maximum elt+minimum 
         }
     }
 
-    int heightWithoutRec(struct BT *root, struct Queue *queue){
+    int heightWithoutRec(struct BT *root, struct Queue *queue){//height of a tree
         struct BT *temp=NULL;
         if(root==NULL){
             return 0;
@@ -273,12 +274,67 @@ void Maximum_Minimum(struct BT *root,struct Queue *queue){//maximum elt+minimum 
         return level;
     }
 
+    void deepest(struct BT *root, struct Queue *queue){//deepest node
+        struct BT *temp=NULL;
+        if(root==NULL){
+            printf("empty tree");
+            return;
+        }
+        Enqueue(queue,root);
+        while(!isEmpty(queue)){
+            temp=Dequeue(queue);
+            if(temp->left){
+                Enqueue(queue,temp->left);
+            }
+            if(temp->right){
+                Enqueue(queue,temp->right);
+            }
+        }
+        printf("deepest: %d",temp->data);
+        clearQueue(queue);
+    }
+
+    int noLeafNodes(struct BT *root, struct Queue *queue){//no. of leaf nodes
+        struct BT *temp;
+        if(root==NULL){
+            return 0;
+        }
+        int count=0;
+        Enqueue(queue,root);
+        while(!isEmpty(queue)){
+            temp=Dequeue(queue);
+            if(temp->left==NULL && temp->right==NULL){
+                count++;
+            }
+            if(temp->left){
+                Enqueue(queue,temp->left);
+            }
+            if(temp->right){
+                Enqueue(queue,temp->right);
+            }
+        }
+        return count;
+    }
+
+//checking if trees are structurally identical
+int identical(struct BT *root1,struct BT *root2){
+    if(root1==NULL && root2==NULL){
+        return 1;
+    }
+    else if(root1==NULL || root2==NULL){
+        return 0;
+    }
+    else{
+        return (root1->data==root2->data && identical(root1->left,root2->left) && identical(root1->right,root2->right));
+    }
+}
+
 int main(){
     int ch,ch2,key,rootdata;
     printf("enter root data:");scanf("%d",&rootdata);
     root=createNode(rootdata);
     while(1){
-        printf("\n1.insert 2.delete 3.display 4.level_order 5.max+min 6.sizeWithRec 7.sizeWithoutRec 8.height 9.exit: ");scanf("%d",&ch);
+        printf("\n1.insert 2.delete 3.display 4.level_order 5.max+min 6.sizeWithRec 7.sizeWithoutRec 8.height 9.deepest_node 10.leaf_nodes 19.exit: ");scanf("%d",&ch);
         if(ch==1){
             printf("input key: ");scanf("%d",&key);
             insertNode(root,key);
@@ -310,6 +366,12 @@ int main(){
             else printf("height: %d",heightWithoutRec(root,queue));
         }
         else if(ch==9){
+            deepest(root,queue);
+        }
+        else if(ch==10){
+            printf("size: %d",noLeafNodes(root,queue));
+        }    
+        else if(ch==19){
             printf("exiting...");
             return 0;
         }
