@@ -198,14 +198,43 @@ void Maximum_Minimum(struct BT *root,struct Queue *queue){//maximum elt+minimum 
     }
     clearQueue(queue);
     printf("max: %d, min: %d",max,min);
-}
+    }
+
+    int sizeWithRec(struct BT *root){
+        if(root==NULL){
+            return 0;
+        }
+        else{
+            return(sizeWithRec(root->left)+1+(sizeWithRec(root->right)));
+        }
+    }
+
+    int sizeWithoutRec(struct BT *root,struct Queue *queue){
+        struct BT *temp=NULL;
+        int size=0;
+        if(root==NULL){
+            return 0;
+        }
+        Enqueue(queue,root);
+        while(!isEmpty(queue)){
+            temp=Dequeue(queue);
+            size++;
+            if(temp->left){
+                Enqueue(queue,root->left);
+            }
+            if(temp->right){
+                Enqueue(queue,root->right);
+            }
+        }
+        return size;
+    }
 
 int main(){
     int ch,key,rootdata;
     printf("enter root data:");scanf("%d",&rootdata);
     root=createNode(rootdata);
     while(1){
-        printf("\n1.insert 2.delete 3.display 4.level_order 5.max+min 8.exit: ");scanf("%d",&ch);
+        printf("\n1.insert 2.delete 3.display 4.level_order 5.max+min 6.sizeWithRec 7.sizeWithoutRec 8.exit: ");scanf("%d",&ch);
         if(ch==1){
             printf("input key: ");scanf("%d",&key);
             insertNode(root,key);
@@ -225,6 +254,12 @@ int main(){
         else if(ch==5){
             Maximum_Minimum(root,queue);
         }                       
+        else if(ch==6){
+            printf("size: %d",sizeWithRec(root));
+        } 
+        else if(ch==7){
+            printf("size: %d",sizeWithoutRec(root,queue));
+        } 
         else if(ch==8){
             printf("exiting...");
             return 0;
