@@ -316,18 +316,7 @@ void Maximum_Minimum(struct BT *root,struct Queue *queue){//maximum elt+minimum 
         return count;
     }
 
-//checking if trees are structurally identical
-int identical(struct BT *root1,struct BT *root2){
-    if(root1==NULL && root2==NULL){
-        return 1;
-    }
-    else if(root1==NULL || root2==NULL){
-        return 0;
-    }
-    else{
-        return (root1->data==root2->data && identical(root1->left,root2->left) && identical(root1->right,root2->right));
-    }
-}
+
 
 int main(){
     int ch,ch2,key,rootdata;
