@@ -329,6 +329,24 @@ int identical(struct BT *root1,struct BT *root2){
     }
 }
 
+//finding level with highest sum
+int a[6]={0};
+int levelSum(struct BT *root,int i){
+    if(root==NULL){
+        return 0;
+    }
+    a[i]+=root->data;
+    int leftsum=levelSum(root->left,i+1);
+    int rightsum=levelSum(root->right,i+1);
+    
+    return (leftsum>rightsum ? leftsum : rightsum)+root->data;
+}
+void maxSum(){
+    for(int i=0;i<6;i++){
+        printf("%d  ",a[i]);
+    }
+}
+
 int main(){
     int ch,ch2,key,rootdata;
     printf("enter root data:");scanf("%d",&rootdata);
@@ -371,6 +389,10 @@ int main(){
         else if(ch==10){
             printf("size: %d",noLeafNodes(root,queue));
         }    
+        else if(ch==11){
+            levelSum(root,0);
+            maxSum();
+        }
         else if(ch==19){
             printf("exiting...");
             return 0;
