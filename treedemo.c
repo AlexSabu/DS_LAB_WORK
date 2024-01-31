@@ -13,15 +13,15 @@ struct BT *temp_root;//for identical function
 struct Queue{//queue
     struct BT *node;
 };
-struct Queue queue[50];
+struct Queue queue[500];
 int front=-1,rear=-1;
 
 void Enqueue(struct Queue *queue,struct BT *node){//inserting node to cir-queue
-    if(front==(rear+1)%50){
+    if(front==(rear+1)%500){
         printf("queue is full");
         exit(0);
     }
-    if(rear==49) rear=0;
+    if(rear==499) rear=0;
     else if(front==-1) front=rear=0;
     else rear++;
     queue[rear].node=node;
@@ -32,7 +32,7 @@ struct BT* Dequeue(struct Queue *queue){//deleting node from cir-queue
         exit(0);
     }
     struct BT *node=queue[front].node;
-    if(front==49) front=0;
+    if(front==499) front=0;
     else if(front==rear) front=rear=-1;
     else front++;
     return node;
@@ -44,8 +44,8 @@ bool isEmpty(struct Queue *queue){//checking if cir-queue is empty
 void clearQueue(struct Queue *queue){//clearing queue
     int i=front;
     while(i!=rear){
-        queue[i++].node=NULL;
-        i=(i+1)%50;
+        queue[i].node=NULL;
+        i=(i+1)%500;
     }
     queue[rear].node=NULL;
     front=rear=-1;
@@ -330,29 +330,49 @@ int identical(struct BT *root1,struct BT *root2){
 }
 
 //finding level with highest sum
-int a[6]={0};
-int levelSum(struct BT *root,int i){
+int levelSum(struct BT *root,struct Queue *queue){
+    struct BT *temp;
     if(root==NULL){
         return 0;
     }
-    a[i]+=root->data;
-    int leftsum=levelSum(root->left,i+1);
-    int rightsum=levelSum(root->right,i+1);
-    
-    return (leftsum>rightsum ? leftsum : rightsum)+root->data;
-}
-void maxSum(){
-    for(int i=0;i<6;i++){
-        printf("%d  ",a[i]);
+    int level=0,maxLevel=0,currentSum=0,maxSum=0;
+    Enqueue(queue,root);
+    Enqueue(queue,NULL);
+    while(!isEmpty(queue)){
+        temp=Dequeue(queue);
+        if(temp==NULL){
+            if(currentSum>maxSum){
+                maxSum=currentSum;
+                maxLevel=level;
+            }
+            level++;
+            currentSum=0;
+            if(!isEmpty(queue))
+                Enqueue(queue,NULL);
+        }
+        else{
+            currentSum+=temp->data;
+            if(root->left){
+                Enqueue(queue,temp->left);
+            }
+            if(root->right){
+                Enqueue(queue,temp->right);
+            }
+        }
     }
+    clearQueue(queue);
+    return maxLevel;
+
 }
+
 
 int main(){
     int ch,ch2,key,rootdata;
     printf("enter root data:");scanf("%d",&rootdata);
     root=createNode(rootdata);
     while(1){
-        printf("\n1.insert 2.delete 3.display 4.level_order 5.max+min 6.sizeWithRec 7.sizeWithoutRec 8.height 9.deepest_node 10.leaf_nodes 19.exit: ");scanf("%d",&ch);
+        clearQueue(queue);
+        printf("\n1.insert 2.delete 3.display 4.level_order 5.max+min 6.sizeWithRec 7.sizeWithoutRec 8.height 9.deepest_node 10.leaf_nodes 12.mirror 19.exit: ");scanf("%d",&ch);
         if(ch==1){
             printf("input key: ");scanf("%d",&key);
             insertNode(root,key);
@@ -390,8 +410,7 @@ int main(){
             printf("size: %d",noLeafNodes(root,queue));
         }    
         else if(ch==11){
-            levelSum(root,0);
-            maxSum();
+            printf("level: %d",levelSum(root,queue));
         }
         else if(ch==19){
             printf("exiting...");
