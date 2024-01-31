@@ -365,6 +365,17 @@ int levelSum(struct BT *root,struct Queue *queue){
 
 }
 
+void mirror(struct BT *root){
+    struct BT *temp;
+    if(root){
+        mirror(root->left);
+        mirror(root->right);
+        //swap
+        temp=root->left;
+        root->left=root->right;
+        root->right=temp;
+    }
+}
 
 int main(){
     int ch,ch2,key,rootdata;
@@ -411,6 +422,11 @@ int main(){
         }    
         else if(ch==11){
             printf("level: %d",levelSum(root,queue));
+        }
+        else if(ch==12){
+            mirror(root);
+            printf("mirrored :");
+            display(root);
         }
         else if(ch==19){
             printf("exiting...");
