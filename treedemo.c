@@ -365,17 +365,7 @@ int levelSum(struct BT *root,struct Queue *queue){
 
 }
 
-void mirror(struct BT *root){
-    struct BT *temp;
-    if(root){
-        mirror(root->left);
-        mirror(root->right);
-        //swap
-        temp=root->left;
-        root->left=root->right;
-        root->right=temp;
-    }
-}
+
 
 int main(){
     int ch,ch2,key,rootdata;
