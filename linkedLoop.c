@@ -38,35 +38,20 @@ void loopHead() {
         current = current->link;
     }
     loop = current;
+    loop->link=loop;
 }
 
-// void createLoop(int data){
-//     loopHead();
-//     if(loop->link==NULL){
-//         loop->link=loop;
-//     }
-//     struct Node* new=createNode(data);
-//     struct Node *current=loop;
-//     while(current->link!=loop){
-//         current=current->link;
-//     }
-//     current->link=new;
-//     new->link=loop->link;
-// }
-void createLoop(int data) {
-    loopHead();
-    if (loop == NULL) {
-        printf("Cannot create loop, list is empty.\n");
-        return;
+void createLoop(int data){
+    if(loop==NULL){
+        loopHead();
     }
-    struct Node* new = createNode(data);
-    struct Node* current = loop;
-    
-    while (current->link != loop) {
-        current = current->link;
+    struct Node* new=createNode(data);
+    struct Node *current=loop;
+    while(current->link!=loop){
+        current=current->link;
     }
-    current->link = new;
-    new->link = loop;
+    current->link=new;
+    new->link=loop;
 }
 
 
