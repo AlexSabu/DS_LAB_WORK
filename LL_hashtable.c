@@ -82,7 +82,7 @@ void displayLL() {
 int main(){
     int data,ch;
     while(1){
-        printf("\n1.linear 2.convert: 3.check");scanf("%d",&ch);
+        printf("\n1.linear 2.convert :");scanf("%d",&ch);
         if(ch==1){
             printf("input data: ");scanf("%d",&data);
             createLL(data);
