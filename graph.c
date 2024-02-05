@@ -1,42 +1,3 @@
-
-
-// struct Graph* createGraph(int vertices){
-//     struct Graph* graph=(struct Graph*)malloc((sizeof(struct Graph)));
-//     graph->vertex=vertices;
-//     //array of adjLists
-//     graph->adjList=(struct Node**)malloc(vertices*sizeof(struct Node*));
-//     //initializing each adjList to null
-//     for(int i=0;i<vertices;i++){
-//         graph->adjList[i]=NULL;
-//     }
-//     return graph;
-// }
-
-// void insertGraph(int data,int key){
-//     struct Node *new=createNode(data);
-//     struct Node *current=graph->adjList[key],*temp=NULL;
-//     if(current==NULL){
-//         graph->adjList[key]=new;
-//         return;
-//     }
-//     while(current!=NULL){
-//         temp=current;
-//         current=current->link;
-//     }
-//     temp->link=new;
-// }
-
-// void displayGraph(){
-//     for(int i=0;i<5;i++){
-//         printf("%d: -> ",i);
-//         struct Node *current=graph->adjList[i];
-//         while(current!=NULL){
-//             printf("%d -> ",current->data);
-//             current=current->link;
-//         }
-//         printf("NULL\n");
-//     }
-// }
 #include<stdio.h>
 #include<stdlib.h>
 
@@ -132,7 +93,89 @@ struct Graph* deleteEdge(struct Graph *G,int src,int dest){
 
         }
     }
+    // dest -> src edge
+    struct Node *current1=G->adjList[dest];
+    struct Node *temp1=NULL;
+    if(current1==NULL){
+        printf("no such edge\n");
+    }
+    else{
+        while(current1!=NULL && current1->data!=src){
+            temp1=current1;
+            current1=current1->link;
+        }
+        if(current1==NULL){//edge is absent
+            printf("no such edge\n");
+        }
+        else{//edge is there
+            if(temp1==NULL){
+                G->adjList[dest]=current1->link;
+                current1->link=NULL;
+                free(current1);
+            }
+            else{
+                temp1->link=current1->link;
+                current1->link=NULL;
+                free(current1);
+            }
+
+        }
+    }
     return G;
+}
+
+//DFS using recursion
+void DFS_rec(int vertex,int visited[]){
+    visited[vertex]=1;
+    printf("%d ->",vertex);
+    struct Node *current=graph->adjList[vertex];
+    while(current!=NULL){
+        int neighbour=current->data;
+        if(visited[neighbour]==0){
+            DFS_rec(neighbour,visited);
+        }
+        current=current->link;
+    }
+}
+
+void DFS(int start){
+    int* visited=(int*)malloc(graph->vertex*sizeof(int));
+    for(int i=0;i<graph->vertex;i++){
+        visited[i]=0;//unvisited state
+    }
+    printf("DFS: ");
+    DFS_rec(start,visited);
+    free(visited);
+    printf("\n");
+}
+
+//BFS 
+void BFS(int start){
+    int* visited=(int*)malloc(graph->vertex*sizeof(int));
+    for(int i=0;i<graph->vertex;i++){
+        visited[i]=0;//unvisited state
+    }
+    printf("BFS: ");
+    int* queue=(int*)malloc(graph->vertex*sizeof(int));
+    int front=-1,rear=-1;
+    visited[start]=1;
+    queue[++rear]=start;
+
+    while(front!=rear){
+        int vertex=queue[++front];
+        printf("%d ->",vertex);
+        struct Node *current=graph->adjList[vertex];        
+        while(current!=NULL){
+            int neighbour=current->data;
+            if(visited[neighbour]==0){
+                visited[neighbour]=1;
+                queue[++rear]=neighbour;
+            }
+            current=current->link;
+        }
+    }
+    free(visited);
+    free(queue);
 }
 
 void display(struct Graph *G){
@@ -150,16 +193,17 @@ void display(struct Graph *G){
 }
 
 int main(){
-    graph=createGraph(5);
+    graph=createGraph(8);
     insertEdge(graph,0,1);
-    insertEdge(graph,0,4);
-    insertEdge(graph,1,4);
-    insertEdge(graph,3,4);
+    insertEdge(graph,1,2);
+    insertEdge(graph,1,7);
+    insertEdge(graph,2,4);
     insertEdge(graph,2,3);
-    insertEdge(graph,1,0);                    
-    display(graph);
-    deleteEdge(graph,0,1);
-    display(graph);
-    deleteEdge(graph,0,3);  
+    insertEdge(graph,4,5);                    
+    insertEdge(graph,4,6);
+    insertEdge(graph,4,7);
     display(graph);   
+
+    DFS(0);//start at 0
+    BFS(0);
 }
