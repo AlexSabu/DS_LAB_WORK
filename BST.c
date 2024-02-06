@@ -75,6 +75,77 @@ void max(struct BST *root){//maximum node
     printf("max: %d\n",root->data);
 }
 
+struct BST* inoder_succ(struct BST *root,int data){
+    struct BST *current=root,*temp=NULL;
+
+}
+
+void deleteNode(int data){
+    if(root==NULL){
+        printf("root is null\n");
+        return;
+    }
+    int c;
+    struct BST *current=root,*temp=NULL;
+    while(current!=NULL){
+        if(current->data > data){
+            temp=current;
+            current=current->left;
+        }
+        else if(current->data < data){
+            temp=current;
+            current=current->right;
+        }
+        else{
+            break;
+        }
+    }
+    if(current==NULL){
+        printf("no such node\n");
+        return;
+    }
+    if(current->left==NULL && current->right==NULL){
+        c=1;
+    }
+    else if(current->left!=NULL && current->right!=NULL){
+        c=3;
+    }
+    else{
+        c=2;
+    }
+    if(c==1){//current node is leaf node
+        if(temp->left==current) temp->left=NULL;
+        else temp->right=NULL;
+        free(current);
+    }
+    else if(c==2){//current has one child
+        if(temp->left==current){
+            if(current->left!=NULL){
+                temp->left=current->left;
+                current->left=NULL;
+            }
+            else{
+                temp->left=current->right;
+                current->right=NULL;
+            }
+        }
+        else{
+            if(current->left!=NULL){
+                temp->right=current->left;
+                current->left=NULL;
+            }
+            else{
+                temp->right=current->right;
+                current->right=NULL;
+            }
+        }
+        free(current);
+    }
+    else{//current has two child
+
+    }
+}
+
 int main(){
     root=createNode(4);
 
