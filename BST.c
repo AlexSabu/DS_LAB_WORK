@@ -55,14 +55,15 @@ void inorder(struct BST *root){
     }
 }
 
-void min(struct BST *root){//minimum node
+struct BST* min(struct BST *root){//minimum node
     if(root==NULL){
         printf("tree is empty\n");
     }
     while(root->left!=NULL){
         root=root->left;
     }
-    printf("min: %d\n",root->data);
+    //printf("min: %d\n",root->data);
+    return root;
 }
 
 void max(struct BST *root){//maximum node
@@ -75,9 +76,13 @@ void max(struct BST *root){//maximum node
     printf("max: %d\n",root->data);
 }
 
-struct BST* inoder_succ(struct BST *root,int data){
-    struct BST *current=root,*temp=NULL;
-
+struct BST* inoder_succ(struct BST *root){
+    struct BST *current=root->right,*temp=NULL;
+    if(current==NULL){
+        return NULL;
+    }
+    temp=min(current);
+    return temp;
 }
 
 void deleteNode(int data){
@@ -142,7 +147,13 @@ void deleteNode(int data){
         free(current);
     }
     else{//current has two child
-
+        struct BST *succ=inoder_succ(current);
+        if(succ==NULL){
+            return;
+        }
+        int s=succ->data;
+        deleteNode(s);
+        current->data=s;
     }
 }
 
@@ -158,8 +169,12 @@ int main(){
 
     printf("BST: ");   
     inorder(root); printf("\n");
-
-    min(root);
+    struct BST *what=min(root);
+    printf("min: %d",what->data);
     max(root);
+
+    //deleteNode(6);
+    deleteNode(4);
+    inorder(root); printf("\n");   
     return 0;
 }
