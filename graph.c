@@ -118,7 +118,6 @@ struct Graph* deleteEdge(struct Graph *G,int src,int dest){
                 current1->link=NULL;
                 free(current1);
             }
-
         }
     }
     return G;
