@@ -41,6 +41,18 @@ void loopHead() {
     loop->link=loop;
 }
 
+void createLoop(int data){
+    if(loop==NULL){
+        loopHead();
+    }
+    struct Node* new=createNode(data);
+    struct Node *current=loop;
+    while(current->link!=loop){
+        current=current->link;
+    }
+    current->link=new;
+    new->link=loop;
+}
 
 
 void check(){
