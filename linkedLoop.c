@@ -70,7 +70,14 @@ void check(){
     return;
 }
 
-
+void display() {
+    struct Node* current = head;
+    while (current != NULL) {
+        printf("%d -> ", current->data);
+        current = current->link;
+    }
+    printf("NULL\n");
+}
 
 int main(){
     int data,ch;
