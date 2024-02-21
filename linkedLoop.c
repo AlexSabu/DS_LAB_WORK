@@ -28,7 +28,18 @@ void createLL(int data){
     return;
 }
 
-
+void loopHead() {
+    if (head == NULL) {
+        loop = NULL;
+        return;
+    }
+    struct Node* current = head;
+    while (current->link != NULL) {
+        current = current->link;
+    }
+    loop = current;
+    loop->link=loop;
+}
 
 void createLoop(int data){
     if(loop==NULL){
