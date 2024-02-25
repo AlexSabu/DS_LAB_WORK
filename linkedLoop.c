@@ -55,20 +55,7 @@ void createLoop(int data){
 }
 
 
-void check(){
-    struct Node *slow,*fast;
-    slow=fast=head;
-    while(fast && fast->link){
-        slow=slow->link;
-        fast=fast->link->link;
-        if(slow==fast){
-            printf("loop is there");
-            return;
-        }
-    }
-    printf("loop absent");
-    return;
-}
+
 
 void display() {
     struct Node* current = head;
