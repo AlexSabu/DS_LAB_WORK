@@ -177,19 +177,7 @@ void BFS(int start){
     free(queue);
 }
 
-void display(struct Graph *G){
-    printf("graph: \n");
-    int n=G->vertex;
-    for(int i=0;i<n;i++){
-        struct Node *current=G->adjList[i];
-        printf("%d:-> ",i);
-        while(current!=NULL){
-            printf("%d -> ",current->data);
-            current=current->link;
-        }
-        printf("NULL\n");
-    }
-}
+
 
 int main(){
     graph=createGraph(8);
