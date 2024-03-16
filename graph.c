@@ -29,7 +29,40 @@ struct Graph* createGraph(int v){
     return G;
 }
 
+struct Graph* insertEdge(struct Graph *G, int src, int dest) {
+    // Insert edge from src to dest
+    struct Node *current1 = G->adjList[src], *temp1 = NULL;
+    if (current1 == NULL) {
+        struct Node *new = createNode(dest);
+        G->adjList[src] = new;
+    } else {
+        while (current1 != NULL && current1->data != dest) {
+            temp1 = current1;
+            current1 = current1->link;
+        }
+        if (current1 == NULL) {
+            struct Node *new = createNode(dest);
+            temp1->link = new;
+        }
+    }
 
+    // Insert edge from dest to src
+    struct Node *current2 = G->adjList[dest], *temp2 = NULL;
+    if (current2 == NULL) {
+        struct Node *new = createNode(src);
+        G->adjList[dest] = new;
+    } else {
+        while (current2 != NULL && current2->data != src) {
+            temp2 = current2;
+            current2 = current2->link;
+        }
+        if (current2 == NULL) {
+            struct Node *new = createNode(src);
+            temp2->link = new;
+        }
+    }
+    return G;
+}
 
 struct Graph* deleteEdge(struct Graph *G,int src,int dest){
     // src -> dest edge
