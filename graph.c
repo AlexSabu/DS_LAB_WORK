@@ -19,15 +19,7 @@ struct Node* createNode(int data){
     return new;
 }
 
-struct Graph* createGraph(int v){
-    struct Graph *G=(struct Graph*)malloc(sizeof(struct Graph));
-    G->vertex=v;
-    G->adjList=(struct Node**)malloc(v*sizeof(struct Node*));
-    for(int i=0;i<v;i++){
-        G->adjList[i]=NULL;
-    }
-    return G;
-}
+
 
 struct Graph* insertEdge(struct Graph *G, int src, int dest) {
     // Insert edge from src to dest
