@@ -137,7 +137,16 @@ void DFS_rec(int vertex,int visited[]){
     }
 }
 
-
+void DFS(int start){
+    int* visited=(int*)malloc(graph->vertex*sizeof(int));
+    for(int i=0;i<graph->vertex;i++){
+        visited[i]=0;//unvisited state
+    }
+    printf("DFS: ");
+    DFS_rec(start,visited);
+    free(visited);
+    printf("\n");
+}
 
 //BFS 
 void BFS(int start){
