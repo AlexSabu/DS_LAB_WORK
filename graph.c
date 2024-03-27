@@ -124,7 +124,18 @@ struct Graph* deleteEdge(struct Graph *G,int src,int dest){
 }
 
 //DFS using recursion
-
+void DFS_rec(int vertex,int visited[]){
+    visited[vertex]=1;
+    printf("%d ->",vertex);
+    struct Node *current=graph->adjList[vertex];
+    while(current!=NULL){
+        int neighbour=current->data;
+        if(visited[neighbour]==0){
+            DFS_rec(neighbour,visited);
+        }
+        current=current->link;
+    }
+}
 
 void DFS(int start){
     int* visited=(int*)malloc(graph->vertex*sizeof(int));
