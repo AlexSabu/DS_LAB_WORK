@@ -64,78 +64,7 @@ struct Graph* insertEdge(struct Graph *G, int src, int dest) {
     return G;
 }
 
-struct Graph* deleteEdge(struct Graph *G,int src,int dest){
-    // src -> dest edge
-    struct Node *current=G->adjList[src];
-    struct Node *temp=NULL;
-    if(current==NULL){
-        printf("no such edge\n");
-    }
-    else{
-        while(current!=NULL && current->data!=dest){
-            temp=current;
-            current=current->link;
-        }
-        if(current==NULL){//edge is absent
-            printf("no such edge\n");
-        }
-        else{//edge is there
-            if(temp==NULL){
-                G->adjList[src]=current->link;
-                current->link=NULL;
-                free(current);
-            }
-            else{
-                temp->link=current->link;
-                current->link=NULL;
-                free(current);
-            }
 
-        }
-    }
-    // dest -> src edge
-    struct Node *current1=G->adjList[dest];
-    struct Node *temp1=NULL;
-    if(current1==NULL){
-        printf("no such edge\n");
-    }
-    else{
-        while(current1!=NULL && current1->data!=src){
-            temp1=current1;
-            current1=current1->link;
-        }
-        if(current1==NULL){//edge is absent
-            printf("no such edge\n");
-        }
-        else{//edge is there
-            if(temp1==NULL){
-                G->adjList[dest]=current1->link;
-                current1->link=NULL;
-                free(current1);
-            }
-            else{
-                temp1->link=current1->link;
-                current1->link=NULL;
-                free(current1);
-            }
-        }
-    }
-    return G;
-}
-
-//DFS using recursion
-void DFS_rec(int vertex,int visited[]){
-    visited[vertex]=1;
-    printf("%d ->",vertex);
-    struct Node *current=graph->adjList[vertex];
-    while(current!=NULL){
-        int neighbour=current->data;
-        if(visited[neighbour]==0){
-            DFS_rec(neighbour,visited);
-        }
-        current=current->link;
-    }
-}
 
 
 //BFS 
