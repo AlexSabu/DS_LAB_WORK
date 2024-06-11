@@ -126,34 +126,7 @@ struct Graph* deleteEdge(struct Graph *G,int src,int dest){
 
 
 
-//BFS 
-void BFS(int start){
-    int* visited=(int*)malloc(graph->vertex*sizeof(int));
-    for(int i=0;i<graph->vertex;i++){
-        visited[i]=0;//unvisited state
-    }
-    printf("BFS: ");
-    int* queue=(int*)malloc(graph->vertex*sizeof(int));
-    int front=-1,rear=-1;
-    visited[start]=1;
-    queue[++rear]=start;
 
-    while(front!=rear){
-        int vertex=queue[++front];
-        printf("%d ->",vertex);
-        struct Node *current=graph->adjList[vertex];        
-        while(current!=NULL){
-            int neighbour=current->data;
-            if(visited[neighbour]==0){
-                visited[neighbour]=1;
-                queue[++rear]=neighbour;
-            }
-            current=current->link;
-        }
-    }
-    free(visited);
-    free(queue);
-}
 
 void display(struct Graph *G){
     printf("graph: \n");
